@@ -1,4 +1,3 @@
-# import copy
 
 def find_next_empty(puzzle):
     # row, col= find_next_empty
@@ -13,9 +12,6 @@ def is_valid(puzzle, guess, row, col):
     num_row = puzzle[row]
     if guess in num_row:
         return False
-    # col_num= []
-    # for i in range(9):
-    # col_num.append(puzzle[i][col])
     col_num = [puzzle[i][col] for i in range(9)]
     if guess in col_num:
         return False
@@ -30,18 +26,20 @@ def is_valid(puzzle, guess, row, col):
 
 
 def solve_sudoku(puzzle):
-    # make puzzle2 a deep copy of puzzle
-    # puzzle2 = deepcopy.puzzle
     row, col = find_next_empty(puzzle)
     if row is None:
         return True
     for guess in range(1, 10):
+        print(f"trying guess {guess} at {row},{col}")
         if is_valid(puzzle, guess, row, col):
+            print(f"{row},{col} is valid for puzzle with guess {guess}")
             puzzle[row][col] = guess
             if solve_sudoku(puzzle):
                 return True
 
             puzzle[row][col] = -1
+        print(f"{row},{col} is not valid for puzzle with guess {guess}")
+
         return False
 
     # list in list is a row in the sudoku board
@@ -64,3 +62,5 @@ if __name__ == '__main__':
 
     print(solve_sudoku(sudoku_board))
     print(sudoku_board)
+
+tryboard =

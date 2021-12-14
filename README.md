@@ -1,1 +1,1 @@
-# musa-project
+# self-project
